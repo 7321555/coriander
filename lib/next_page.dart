@@ -20,6 +20,9 @@ class NextPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(name),
+            Image.network(
+              'https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG_omiYkNVym1Sd6g5T38MuTBDc4e9p3cTQ3M1cJm6kfTK88YlTzfcuQ6W_b4onsNywk1fR8TsHDdIMs7TLDMtq2TCQcl-EJtKD-u4aSSMV8MhQpNUtQJPdVAV2Q-kVb1YVynuPBnkyQpIN0QoaSX2nJ1SVbYiL2x0RvslEsQFmXYASraPCgDDS4zcOzn1JC61_KqbfcCHmDsiUbP039xUI4=/jyzDDRzj.jpg?errorImage=false',
+            ),
             Center(
               child: ElevatedButton(
                 child:Text('戻る'),

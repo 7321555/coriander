@@ -46,9 +46,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final items = List<String>.generate(10000, (i) => "Item $i");
+  int _counter = 0;
 
-
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
+  }
+  String x = '次へ';
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -61,30 +71,50 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text('カウントアップAPP'),
-        actions: <Widget>[Icon(Icons.add),Icon(Icons.share),]
+          title: Text('カウントアップAPP'),
+          actions: <Widget>[Icon(Icons.add),Icon(Icons.share),]
       ),
       body: Container(
         width: double.infinity,
-        child:GridView.count(
-          crossAxisCount: 1,
-          children: List.generate(5, (index) {
-            return Column(
-              children:<Widget>[
-                Expanded(
-                    child: Image.network(
-                        'https://pbs.twimg.com/profile_images/1408571495350034440/jyzDDRzj_400x400.jpg'
-                    ,),),
-                Text('$index'),
-              ]
-            );
-          }),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            // Image.asset('images/hono.jpg'),
+            Icon(
+                Icons.library_music,
+                size:100
+            ),
+
+
+            // Image.network(
+            //   'https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG_omiYkNVym1Sd6g5T38MuTBDc4e9p3cTQ3M1cJm6kfTK88YlTzfcuQ6W_b4onsNywk1fR8TsHDdIMs7TLDMtq2TCQcl-EJtKD-u4aSSMV8MhQpNUtQJPdVAV2Q-kVb1YVynuPBnkyQpIN0QoaSX2nJ1SVbYiL2x0RvslEsQFmXYASraPCgDDS4zcOzn1JC61_KqbfcCHmDsiUbP039xUI4=/jyzDDRzj.jpg?errorImage=false',
+            // ),
+
+            ElevatedButton(
+              child:Text(x),
+              onPressed: () async{
+                //ここに押したら反応させたいコードをかく=画面遷移
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NextPage('Have a nice day!'),
+                  ),
+                );
+                x = result;
+                print(result);
+                // Navigator.pushNamed(context, '/second');
+              },
+
+            ),
+          ],
         ),
-
-
       ),
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
-
